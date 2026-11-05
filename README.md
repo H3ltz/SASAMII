@@ -12,11 +12,9 @@
 
 Rakenduse eesmärk on pakkuda vanematele lihtsaid ideid, mis toetavad lapse arengut läbi mängu, avastamise ja ühise aja veetmise.
 
-SASAMII ei ole rakendus, millega laps ekraanis aega veedab. See on rakendus, mis aitab vanemal leida ideid, et laps saaks rohkem päriselus mängida, õppida ja avastada.
-
 ## Sihtrühm
 
-Rakendus on mõeldud lapsevanematele ja hooldajatele, kelle lapsed on vanuses **0–4 aastat** ning kes soovivad leida lihtsaid ja eakohaseid tegevusi lapse arengu toetamiseks.
+Rakendus on mõeldud lapsevanematele, kelle lapsed on vanuses **0–4 aastat** ning kes soovivad leida lihtsaid ja eakohaseid tegevusi lapse arengu toetamiseks.
 
 ## Peamised funktsioonid
 
@@ -66,6 +64,4 @@ Projekt on valmis, kui:
 
 ## Projekti visioon
 
-Soovin luua sooja ja lihtsa keskkonna, mis aitab lapsevanematel leida ideid igapäevasteks väikesteks mängu- ja avastamishetkedeks. Kõik tegevused ei pea olema keerulised ega nõudma erilisi vahendeid – kõige olulisem on koos veedetud aeg.
-
-**Less screen time. More little moments. ♡**
+Soovin luua sooja ja lihtsa keskkonna, mis aitab lapsevanematel leida ideid igapäevasteks mängu- ja avastamishetkedeks. Kõik tegevused ei pea olema keerulised ega nõudma erilisi vahendeid – kõige olulisem on koos veedetud aeg.
