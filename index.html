@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sasamii ♡ — little moments, big discoveries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="sasamii avaleht">
+        <span class="brand-mark">sasamii <span class="heart">♡</span></span>
+        <span class="brand-tagline">little moments, big discoveries</span>
+      </a>
+      <nav class="nav-pills" aria-label="Peamine navigeerimine">
+        <button type="button" class="nav-pill is-active" data-view="explore">
+          Avasta <span class="pill-count" id="navExploreCount">0</span>
+        </button>
+        <button type="button" class="nav-pill" data-view="favorites">
+          Lemmikud <span class="pill-count" id="navFavoritesCount">0</span>
+        </button>
+        <button type="button" class="nav-pill" data-view="history">
+          Tehtud <span class="pill-count" id="navHistoryCount">0</span>
+        </button>
+        <button type="button" class="nav-pill" data-view="ai-soon">
+          AI ideed <span class="badge-soon">Varsti</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container main-content">
+    <section class="hero-grid">
+      <div class="hero-card">
+        <p class="eyebrow">Grow, play &amp; discover together</p>
+        <h1>Päriselu mängu- ja avastamishetked lastevanematele</h1>
+        <p class="hero-lead">
+          SASAMII on mõeldud lapsevanemale, mitte lapsele ekraanis kasutamiseks. Leia lihtne ja eakohane idee, pane telefon kõrvale ning tegutse koos lapsega päriselus.
+        </p>
+        <div class="quick-pick-box">
+          <div class="quick-pick-header">
+            <div>
+              <span class="quick-pick-title">Kiire tegevuse valik vaba aja järgi</span>
+              <p class="quick-pick-sub">Vali aeg ja leiame sobiva tegevuse (vältides hiljuti tehtud tegevusi).</p>
+            </div>
+            <div class="quick-time-buttons" role="group" aria-label="Vali vaba aeg minutites">
+              <button type="button" class="time-btn" data-quick-time="5">5 min</button>
+              <button type="button" class="time-btn" data-quick-time="10">10 min</button>
+              <button type="button" class="time-btn" data-quick-time="15">15 min</button>
+            </div>
+          </div>
+          <div id="quickPickResult" class="quick-pick-result" aria-live="polite">
+            <span class="muted">Klõpsa 5, 10 või 15 min, et saada kiire soovitus.</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label="Lapse profiil">
+        <div class="card-head">
+          <h2>Lapse profiil</h2>
+          <span class="soft-chip" id="profileBadge">0–4 a</span>
+        </div>
+        <p class="card-desc">Lisades lapse nime ja vanuse, tõstame esile just talle sobivad tegevused.</p>
+        <form id="profileForm" class="profile-form">
+          <div class="form-row">
+            <label for="childName">Lapse nimi</label>
+            <input type="text" id="childName" name="childName" placeholder="nt Mia" maxlength="32" />
+          </div>
+          <div class="form-row two-col">
+            <div>
+              <label for="childAgeValue">Vanus</label>
+              <input type="number" id="childAgeValue" name="childAgeValue" min="0" max="48" step="1" placeholder="nt 2" />
+            </div>
+            <div>
+              <label for="childAgeUnit">Ühik</label>
+              <select id="childAgeUnit" name="childAgeUnit">
+                <option value="years">aastat</option>
+                <option value="months">kuud</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvesta profiil</button>
+            <button type="button" id="clearProfileBtn" class="btn btn-ghost">Tühjenda</button>
+          </div>
+        </form>
+        <div id="profileSummary" class="profile-summary" aria-live="polite"></div>
+      </aside>
+    </section>
+
+    <section id="sectionExplore" class="workspace-section">
+      <div class="filter-panel">
+        <div class="filter-top-row">
+          <div class="search-wrap">
+            <label for="searchInput" class="sr-only">Otsi tegevusi</label>
+            <input type="search" id="searchInput" placeholder="Otsi nime, vahendi või märksõna järgi (nt padjad, värvid, helid)..." />
+          </div>
+          <button type="button" id="resetFiltersBtn" class="btn btn-ghost btn-sm">Lähtesta filtrid</button>
+        </div>
+
+        <div class="category-chips" id="categoryChips" role="group" aria-label="Tegevuste kategooriad">
+          <button type="button" class="chip is-active" data-category="all">Kõik kategooriad</button>
+          <button type="button" class="chip" data-category="keel">Kõne ja keel</button>
+          <button type="button" class="chip" data-category="motoorika">Motoorika ja liikumine</button>
+          <button type="button" class="chip" data-category="malu">Mälu</button>
+          <button type="button" class="chip" data-category="loovus">Loovus</button>
+          <button type="button" class="chip" data-category="loogika">Loogika</button>
+        </div>
+
+        <div class="filter-select-row">
+          <div class="filter-field">
+            <label for="ageFilter">Vanusegrupp</label>
+            <select id="ageFilter">
+              <option value="all">Kõik (0–4 aastat)</option>
+              <option value="0-1">0–1 aastat (0–12k)</option>
+              <option value="1-2">1–2 aastat (12–24k)</option>
+              <option value="2-3">2–3 aastat (24–36k)</option>
+              <option value="3-4">3–4 aastat (36–48k)</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="durationFilter">Kestus</label>
+            <select id="durationFilter">
+              <option value="all">Iga kestus</option>
+              <option value="5">Kuni 5 min</option>
+              <option value="10">Kuni 10 min</option>
+              <option value="15">Kuni 15 min</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="materialFilter">Olemasolevad vahendid</label>
+            <select id="materialFilter">
+              <option value="all">Kõik vahendid</option>
+              <option value="kodused asjad">Kodused asjad</option>
+              <option value="paber ja pliiatsid">Paber ja pliiatsid</option>
+              <option value="padjad ja tekid">Padjad ja tekid</option>
+              <option value="õues / loodus">Õues / loodus</option>
+              <option value="veega mäng">Veega mäng</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-bar">
+        <p id="resultsCount" class="results-count">Kuvatakse tegevusi...</p>
+        <label class="toggle-inline">
+          <input type="checkbox" id="hideRecentToggle" checked />
+          <span>Väldi hiljuti tehtud tegevusi</span>
+        </label>
+      </div>
+
+      <div id="activitiesGrid" class="activities-grid"></div>
+    </section>
+
+    <section id="sectionFavorites" class="workspace-section is-hidden">
+      <div class="section-banner">
+        <div>
+          <h2>Salvestatud lemmikud</h2>
+          <p class="muted">Tegevused, mida soovid peagi koos lapsega ette võtta.</p>
+        </div>
+      </div>
+      <div id="favoritesGrid" class="activities-grid"></div>
+    </section>
+
+    <section id="sectionHistory" class="workspace-section is-hidden">
+      <div class="section-banner">
+        <div>
+          <h2>Tehtud tegevuste ajalugu</h2>
+          <p class="muted">Kõik koos kogetud mängu- ja avastamishetked.</p>
+        </div>
+        <button type="button" id="clearHistoryBtn" class="btn btn-ghost btn-sm">Tühjenda ajalugu</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <section id="sectionAiSoon" class="workspace-section is-hidden">
+      <div class="ai-preview-card">
+        <span class="soft-chip">Tulevane versioon • Plaanitud arendus</span>
+        <h2>AI abil uute tegevusideede loomine</h2>
+        <p>
+          Esimeses versioonis kasutab <strong>sasamii</strong> hoolikalt valitud ja eakohast tegevuste kogu. Järgmises etapis saab siin kirjeldada lapse vanust, vaba aega ja kodus leiduvaid vahendeid, et luua personaalseid ideid.
+        </p>
+        <form id="aiDraftForm" class="ai-draft-form">
+          <div class="form-row">
+            <label for="aiMaterialsInput">Mis vahendid teil hetkel käepärast on?</label>
+            <input type="text" id="aiMaterialsInput" placeholder="nt paberiteip, lusikad, käbid, pall" />
+          </div>
+          <div class="form-row">
+            <label for="aiMoodInput">Millist tegevust sooviksid (rahulik, aktiivne, õues)?</label>
+            <input type="text" id="aiMoodInput" placeholder="nt rahulik tegevus enne lõunaund" />
+          </div>
+          <button type="submit" class="btn btn-secondary">Salvesta mõte tulevase AI-mooduli jaoks</button>
+        </form>
+        <div id="aiDraftFeedback" class="ai-feedback" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="activityModal" class="modal-backdrop is-hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="modal-category" id="modalCategory"></span>
+          <h2 id="modalTitle"></h2>
+        </div>
+        <button type="button" id="closeModalBtn" class="icon-btn" aria-label="Sulge aken">✕</button>
+      </div>
+      <div class="modal-meta" id="modalMeta"></div>
+      <p class="modal-summary" id="modalSummary"></p>
+
+      <div class="modal-block">
+        <h3>Vajalikud vahendid</h3>
+        <ul id="modalMaterials" class="tag-list"></ul>
+      </div>
+
+      <div class="modal-block">
+        <h3>Samm-sammulised juhised</h3>
+        <ol id="modalSteps" class="steps-list"></ol>
+      </div>
+
+      <div class="modal-dev-note">
+        <strong>Arenduslik väärtus:</strong> <span id="modalDevNote"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="modalFavoriteBtn" class="btn btn-ghost">♡ Lisa lemmikutesse</button>
+        <button type="button" id="modalCompleteBtn" class="btn btn-primary">✓ Märgi tehtuks</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong>sasamii ♡</strong> — Less screen time. More little moments.</p>
+      <p class="muted">Andmed salvestatakse lokaalselt sinu brauseris (<code>localStorage</code>).</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
